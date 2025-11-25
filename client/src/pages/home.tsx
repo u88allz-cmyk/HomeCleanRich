@@ -674,33 +674,33 @@ function BookingStatusSection() {
   const isInView = useInView(ref, { once: true });
   
   const surnames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "홍", "전", "고", "문", "양", "손", "배", "백", "허", "유", "남", "심", "노", "하", "곽", "성", "차", "주", "우", "구", "민", "진", "나", "지", "엄", "변"];
+  const services = ["입주청소", "거주청소", "상가청소", "특수청소"];
+  const locations = ["서울", "경기", "인천", "부산", "대구", "광주", "대전", "울산", "세종", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"];
   
-  const getRandomName = () => {
+  const getRandomBooking = () => {
     const surname = surnames[Math.floor(Math.random() * surnames.length)];
-    return `${surname}**님`;
+    const service = services[Math.floor(Math.random() * services.length)];
+    const location = locations[Math.floor(Math.random() * locations.length)];
+    return {
+      name: `${surname}**님`,
+      service,
+      location,
+      key: Math.random(),
+      time: "방금 전"
+    };
   };
 
   const [bookings, setBookings] = useState(() => 
-    Array.from({ length: 6 }, () => ({ 
-      name: getRandomName(), 
-      status: "접수완료",
-      key: Math.random()
-    }))
+    Array.from({ length: 5 }, () => getRandomBooking())
   );
 
   useEffect(() => {
     const interval = setInterval(() => {
       setBookings(prev => {
-        const newBookings = [...prev];
-        const randomIndex = Math.floor(Math.random() * 6);
-        newBookings[randomIndex] = {
-          name: getRandomName(),
-          status: "접수완료",
-          key: Math.random()
-        };
-        return newBookings;
+        const newBooking = getRandomBooking();
+        return [newBooking, ...prev.slice(0, 4)];
       });
-    }, 2500);
+    }, 1800);
 
     return () => clearInterval(interval);
   }, []);
@@ -713,28 +713,50 @@ function BookingStatusSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-8"
         >
+          <div className="inline-flex items-center gap-2 mb-4">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+            </span>
+            <span className="text-sm font-medium text-primary">실시간 업데이트 중</span>
+          </div>
           <h3 className="text-2xl font-bold mb-2" data-testid="text-booking-title">서비스 접수현황</h3>
           <p className="text-muted-foreground" data-testid="text-booking-subtitle">실시간 예약 접수 현황</p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <AnimatePresence mode="popLayout">
+        <div className="max-w-2xl mx-auto space-y-3 overflow-hidden">
+          <AnimatePresence initial={false}>
             {bookings.map((booking, index) => (
               <motion.div
                 key={booking.key}
-                initial={{ opacity: 0, scale: 0.8, y: -10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.8, y: 10 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                layout
-                className="bg-background rounded-lg p-4 flex items-center justify-between hover-elevate"
+                initial={{ opacity: 0, y: -50, scale: 0.95 }}
+                animate={{ 
+                  opacity: index === 0 ? 1 : 1 - (index * 0.15),
+                  y: 0, 
+                  scale: 1 
+                }}
+                exit={{ opacity: 0, y: 50, scale: 0.95 }}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 400, 
+                  damping: 25,
+                  duration: 0.4
+                }}
+                className={`bg-background rounded-lg p-4 flex items-center justify-between shadow-sm border border-border/50 ${index === 0 ? 'ring-2 ring-primary/20' : ''}`}
                 data-testid={`card-booking-${index}`}
               >
                 <div className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary" />
-                  <span className="font-medium" data-testid={`text-booking-name-${index}`}>{booking.name} 서비스 예약이 접수 되었습니다.</span>
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <CheckCircle2 className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <span className="font-medium block" data-testid={`text-booking-name-${index}`}>
+                      {booking.name} {booking.service} 예약
+                    </span>
+                    <span className="text-xs text-muted-foreground">{booking.location} · {booking.time}</span>
+                  </div>
                 </div>
-                <Badge className="ml-2" data-testid={`badge-booking-status-${index}`}>{booking.status}</Badge>
+                <Badge className="ml-2 shrink-0" data-testid={`badge-booking-status-${index}`}>접수완료</Badge>
               </motion.div>
             ))}
           </AnimatePresence>
