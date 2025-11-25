@@ -43,6 +43,22 @@ The home page follows an 11-section single-page layout:
 6. Before & After Gallery
 7. Additional sections for reviews, process, and contact
 
+**Service Pages (4 dedicated pages)**
+- /service1 - 입주청소 (Move-in Cleaning)
+- /service2 - 거주청소 (Residential Cleaning)
+- /service3 - 상가청소 (Commercial Cleaning)
+- /service4 - 특수청소 (Special Cleaning)
+
+Each service page includes:
+- Hero section with background image and dark wash overlay
+- Badge pill showing service type
+- "왜 필요할까요?" (Why is it needed?) heading
+- 3 benefit cards with alternating left/right layout
+- ChevronDown arrow separators between cards
+- Scroll-based animations using Framer Motion
+- CTA section with consultation and Kakao buttons
+- Consistent navigation linking all service pages
+
 ### Backend Architecture
 
 **Server Framework**
