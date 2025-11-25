@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
 import { Phone, Mail, MapPin, CheckCircle2, Sparkles, Users, Clock, ArrowRight, Menu, X } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
@@ -672,15 +672,38 @@ function ProcessSection() {
 function BookingStatusSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  
+  const surnames = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "홍", "전", "고", "문", "양", "손", "배", "백", "허", "유", "남", "심", "노", "하", "곽", "성", "차", "주", "우", "구", "민", "진", "나", "지", "엄", "변"];
+  
+  const getRandomName = () => {
+    const surname = surnames[Math.floor(Math.random() * surnames.length)];
+    return `${surname}**님`;
+  };
 
-  const bookings = [
-    { name: "이**님", status: "접수완료" },
-    { name: "김**님", status: "접수완료" },
-    { name: "임**님", status: "접수완료" },
-    { name: "정**님", status: "접수완료" },
-    { name: "최**님", status: "접수완료" },
-    { name: "홍**님", status: "접수완료" }
-  ];
+  const [bookings, setBookings] = useState(() => 
+    Array.from({ length: 6 }, () => ({ 
+      name: getRandomName(), 
+      status: "접수완료",
+      key: Math.random()
+    }))
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBookings(prev => {
+        const newBookings = [...prev];
+        const randomIndex = Math.floor(Math.random() * 6);
+        newBookings[randomIndex] = {
+          name: getRandomName(),
+          status: "접수완료",
+          key: Math.random()
+        };
+        return newBookings;
+      });
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section ref={ref} className="py-16 bg-primary/5" data-testid="section-booking-status">
@@ -695,22 +718,26 @@ function BookingStatusSection() {
         </motion.div>
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {bookings.map((booking, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="bg-background rounded-lg p-4 flex items-center justify-between hover-elevate"
-              data-testid={`card-booking-${index}`}
-            >
-              <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-primary" />
-                <span className="font-medium" data-testid={`text-booking-name-${index}`}>{booking.name} 서비스 예약이 접수 되었습니다.</span>
-              </div>
-              <Badge className="ml-2" data-testid={`badge-booking-status-${index}`}>{booking.status}</Badge>
-            </motion.div>
-          ))}
+          <AnimatePresence mode="popLayout">
+            {bookings.map((booking, index) => (
+              <motion.div
+                key={booking.key}
+                initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: 10 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                layout
+                className="bg-background rounded-lg p-4 flex items-center justify-between hover-elevate"
+                data-testid={`card-booking-${index}`}
+              >
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-primary" />
+                  <span className="font-medium" data-testid={`text-booking-name-${index}`}>{booking.name} 서비스 예약이 접수 되었습니다.</span>
+                </div>
+                <Badge className="ml-2" data-testid={`badge-booking-status-${index}`}>{booking.status}</Badge>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>
