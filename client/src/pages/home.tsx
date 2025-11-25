@@ -15,6 +15,7 @@ import { Phone, Mail, MapPin, CheckCircle2, Sparkles, Users, Clock, ArrowRight, 
 import { motion, useInView } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { Link } from "wouter";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -90,10 +91,10 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
   }, []);
 
   const menuItems = [
-    { label: "입주청소", id: "services" },
-    { label: "거주청소", id: "services" },
-    { label: "상가청소", id: "services" },
-    { label: "특수청소", id: "services" },
+    { label: "입주청소", href: "/service1" },
+    { label: "거주청소", href: "/service2" },
+    { label: "상가청소", href: "/service3" },
+    { label: "특수청소", href: "/service4" },
   ];
 
   return (
@@ -114,16 +115,14 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
 
           <nav className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
-              <button
+              <Link
                 key={item.label}
-                onClick={() => scrollToSection(item.id)}
-                className={`text-base font-medium transition-colors hover:text-primary ${
-                  activeSection === item.id ? "text-primary" : "text-foreground"
-                }`}
+                href={item.href}
+                className="text-base font-medium transition-colors hover:text-primary text-foreground"
                 data-testid={`link-${item.label}`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
           </nav>
 
@@ -155,14 +154,14 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
           >
             <nav className="flex flex-col gap-4">
               {menuItems.map((item) => (
-                <button
+                <Link
                   key={item.label}
-                  onClick={() => scrollToSection(item.id)}
+                  href={item.href}
                   className="text-left px-4 py-2 hover-elevate active-elevate-2 rounded-md text-base font-medium"
                   data-testid={`link-mobile-${item.label}`}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
               <Button 
                 onClick={() => scrollToSection("contact")}
