@@ -37,40 +37,22 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["services", "before-after", "reviews", "process", "contact"];
-      const viewportHeight = window.innerHeight;
-      const scrollPosition = window.scrollY + viewportHeight * 0.3;
-      
-      let closestSection = "services";
-      let minDistance = Infinity;
-      
+      const sections = ["hero", "services", "before-after", "reviews", "process", "contact"];
+      const scrollPosition = window.scrollY + 100;
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const rect = element.getBoundingClientRect();
-          const sectionTop = rect.top + window.scrollY;
-          const sectionMiddle = sectionTop + rect.height / 2;
-          const distance = Math.abs(scrollPosition - sectionMiddle);
-          
-          if (rect.top < viewportHeight * 0.6 && rect.bottom > viewportHeight * 0.2) {
-            if (distance < minDistance) {
-              minDistance = distance;
-              closestSection = section;
-            }
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
           }
         }
       }
-      
-      if (window.scrollY < 100) {
-        closestSection = "services";
-      }
-      
-      setActiveSection(closestSection);
     };
 
-    handleScroll();
-    
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -108,11 +90,10 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
   }, []);
 
   const menuItems = [
-    { label: "서비스소개", id: "services" },
-    { label: "작업사례", id: "before-after" },
-    { label: "고객후기", id: "reviews" },
-    { label: "이용절차", id: "process" },
-    { label: "상담신청", id: "contact" },
+    { label: "입주청소", id: "services" },
+    { label: "거주청소", id: "services" },
+    { label: "상가청소", id: "services" },
+    { label: "특수청소", id: "services" },
   ];
 
   return (
@@ -131,27 +112,17 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
             홈클린리치
           </button>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-2 text-base font-medium transition-all duration-300 rounded-md ${
-                  activeSection === item.id 
-                    ? "text-primary bg-primary/10" 
-                    : "text-foreground hover:text-primary hover:bg-primary/5"
+                className={`text-base font-medium transition-colors hover:text-primary ${
+                  activeSection === item.id ? "text-primary" : "text-foreground"
                 }`}
                 data-testid={`link-${item.label}`}
               >
                 {item.label}
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-primary rounded-full"
-                    initial={false}
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
               </button>
             ))}
           </nav>
@@ -182,16 +153,12 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
             animate={{ opacity: 1, y: 0 }}
             className="md:hidden py-4 border-t border-border"
           >
-            <nav className="flex flex-col gap-2">
+            <nav className="flex flex-col gap-4">
               {menuItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-left px-4 py-3 rounded-md text-base font-medium transition-all duration-200 ${
-                    activeSection === item.id 
-                      ? "text-primary bg-primary/10 border-l-4 border-primary" 
-                      : "text-foreground hover:bg-primary/5"
-                  }`}
+                  className="text-left px-4 py-2 hover-elevate active-elevate-2 rounded-md text-base font-medium"
                   data-testid={`link-mobile-${item.label}`}
                 >
                   {item.label}
@@ -199,7 +166,7 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
               ))}
               <Button 
                 onClick={() => scrollToSection("contact")}
-                className="gap-2 mx-4 mt-2"
+                className="gap-2 mx-4"
                 data-testid="button-mobile-consultation"
               >
                 <Phone className="w-4 h-4" />
@@ -706,61 +673,15 @@ function ProcessSection() {
 function BookingStatusSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const [visibleBookings, setVisibleBookings] = useState<Array<{ name: string; service: string; time: string }>>([]);
-  const [animatingIndex, setAnimatingIndex] = useState<number | null>(null);
 
-  const allBookings = [
-    { name: "이**님", service: "입주청소", time: "방금 전" },
-    { name: "김**님", service: "거주청소", time: "1분 전" },
-    { name: "임**님", service: "상가청소", time: "2분 전" },
-    { name: "정**님", service: "입주청소", time: "3분 전" },
-    { name: "최**님", service: "특수청소", time: "5분 전" },
-    { name: "홍**님", service: "거주청소", time: "7분 전" },
-    { name: "박**님", service: "입주청소", time: "10분 전" },
-    { name: "강**님", service: "상가청소", time: "12분 전" },
-    { name: "조**님", service: "거주청소", time: "15분 전" },
-    { name: "윤**님", service: "특수청소", time: "18분 전" },
-    { name: "장**님", service: "입주청소", time: "20분 전" },
-    { name: "한**님", service: "상가청소", time: "25분 전" },
-    { name: "서**님", service: "입주청소", time: "28분 전" },
-    { name: "오**님", service: "거주청소", time: "30분 전" },
-    { name: "신**님", service: "특수청소", time: "35분 전" },
-    { name: "권**님", service: "입주청소", time: "40분 전" },
-    { name: "황**님", service: "상가청소", time: "45분 전" },
-    { name: "안**님", service: "거주청소", time: "50분 전" },
+  const bookings = [
+    { name: "이**님", status: "접수완료" },
+    { name: "김**님", status: "접수완료" },
+    { name: "임**님", status: "접수완료" },
+    { name: "정**님", status: "접수완료" },
+    { name: "최**님", status: "접수완료" },
+    { name: "홍**님", status: "접수완료" }
   ];
-
-  useEffect(() => {
-    setVisibleBookings(allBookings.slice(0, 6));
-  }, []);
-
-  useEffect(() => {
-    if (!isInView) return;
-
-    const interval = setInterval(() => {
-      setAnimatingIndex(0);
-      
-      setTimeout(() => {
-        setVisibleBookings(prev => {
-          const currentFirstIndex = allBookings.findIndex(b => b.name === prev[0]?.name);
-          const nextIndex = (currentFirstIndex + 6) % allBookings.length;
-          const newBooking = allBookings[nextIndex];
-          
-          const newBookings = [...prev];
-          newBookings.shift();
-          newBookings.push({
-            ...newBooking,
-            time: "방금 전"
-          });
-          
-          return newBookings;
-        });
-        setAnimatingIndex(null);
-      }, 400);
-    }, 6000);
-
-    return () => clearInterval(interval);
-  }, [isInView]);
 
   return (
     <section ref={ref} className="py-16 bg-primary/5" data-testid="section-booking-status">
@@ -770,40 +691,25 @@ function BookingStatusSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-8"
         >
-          <div className="inline-flex items-center gap-2 mb-2">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-            </span>
-            <h3 className="text-2xl font-bold" data-testid="text-booking-title">서비스 접수현황</h3>
-          </div>
+          <h3 className="text-2xl font-bold mb-2" data-testid="text-booking-title">서비스 접수현황</h3>
           <p className="text-muted-foreground" data-testid="text-booking-subtitle">실시간 예약 접수 현황</p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {visibleBookings.map((booking, index) => (
+          {bookings.map((booking, index) => (
             <motion.div
-              key={`${booking.name}-${index}`}
+              key={index}
               initial={{ opacity: 0, x: -20 }}
-              animate={{ 
-                opacity: animatingIndex === index ? 0 : 1, 
-                x: animatingIndex === index ? -20 : 0,
-                scale: animatingIndex === index ? 0.95 : 1
-              }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="bg-background rounded-lg p-4 flex items-center justify-between hover-elevate border border-transparent hover:border-primary/20"
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="bg-background rounded-lg p-4 flex items-center justify-between hover-elevate"
               data-testid={`card-booking-${index}`}
             >
-              <div className="flex items-center gap-3 flex-1 min-w-0">
-                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                <div className="min-w-0 flex-1">
-                  <span className="font-medium block truncate" data-testid={`text-booking-name-${index}`}>
-                    {booking.name} {booking.service} 예약이 접수되었습니다.
-                  </span>
-                  <span className="text-xs text-muted-foreground">{booking.time}</span>
-                </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 text-primary" />
+                <span className="font-medium" data-testid={`text-booking-name-${index}`}>{booking.name} 서비스 예약이 접수 되었습니다.</span>
               </div>
-              <Badge className="ml-2 flex-shrink-0" data-testid={`badge-booking-status-${index}`}>접수완료</Badge>
+              <Badge className="ml-2" data-testid={`badge-booking-status-${index}`}>{booking.status}</Badge>
             </motion.div>
           ))}
         </div>
