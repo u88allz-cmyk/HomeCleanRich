@@ -91,10 +91,10 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
   }, []);
 
   const menuItems = [
-    { label: "입주청소", href: "/service1" },
-    { label: "거주청소", href: "/service2" },
-    { label: "상가청소", href: "/service3" },
-    { label: "특수청소", href: "/service4" },
+    { label: "입주청소", href: "/service1", isExternal: true },
+    { label: "거주청소", sectionId: "services", isExternal: false },
+    { label: "상가청소", sectionId: "services", isExternal: false },
+    { label: "특수청소", sectionId: "services", isExternal: false },
   ];
 
   return (
@@ -115,14 +115,27 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
 
           <nav className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="text-base font-medium transition-colors hover:text-primary text-foreground"
-                data-testid={`link-${item.label}`}
-              >
-                {item.label}
-              </Link>
+              item.isExternal ? (
+                <Link
+                  key={item.label}
+                  href={item.href!}
+                  className="text-base font-medium transition-colors hover:text-primary text-foreground"
+                  data-testid={`link-${item.label}`}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.sectionId!)}
+                  className={`text-base font-medium transition-colors hover:text-primary ${
+                    activeSection === item.sectionId ? "text-primary" : "text-foreground"
+                  }`}
+                  data-testid={`link-${item.label}`}
+                >
+                  {item.label}
+                </button>
+              )
             ))}
           </nav>
 
@@ -154,14 +167,25 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
           >
             <nav className="flex flex-col gap-4">
               {menuItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="text-left px-4 py-2 hover-elevate active-elevate-2 rounded-md text-base font-medium"
-                  data-testid={`link-mobile-${item.label}`}
-                >
-                  {item.label}
-                </Link>
+                item.isExternal ? (
+                  <Link
+                    key={item.label}
+                    href={item.href!}
+                    className="text-left px-4 py-2 hover-elevate active-elevate-2 rounded-md text-base font-medium"
+                    data-testid={`link-mobile-${item.label}`}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.label}
+                    onClick={() => scrollToSection(item.sectionId!)}
+                    className="text-left px-4 py-2 hover-elevate active-elevate-2 rounded-md text-base font-medium"
+                    data-testid={`link-mobile-${item.label}`}
+                  >
+                    {item.label}
+                  </button>
+                )
               ))}
               <Button 
                 onClick={() => scrollToSection("contact")}
