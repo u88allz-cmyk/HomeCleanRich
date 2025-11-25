@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Phone, Menu, X, ArrowUp, MessageCircle, Home, ChevronDown } from "lucide-react";
+import { Phone, Menu, X, ArrowUp, MessageCircle, Wrench, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 
-export default function Service1() {
+export default function Service4() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -21,27 +21,27 @@ export default function Service1() {
   };
 
   const menuItems = [
-    { label: "입주청소", href: "/service1", active: true },
+    { label: "입주청소", href: "/service1", active: false },
     { label: "거주청소", href: "/service2", active: false },
     { label: "상가청소", href: "/service3", active: false },
-    { label: "특수청소", href: "/service4", active: false },
+    { label: "특수청소", href: "/service4", active: true },
   ];
 
   const benefits = [
     {
-      title: "건강한 환경 조성",
-      description: "새 집으로 이사하기 전, 숨겨진 먼지와 오염물질을 제거하여 건강한 환경을 조성합니다.",
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop&q=80"
+      title: "전문 기술과 장비",
+      description: "쓰레기 집이나 더러운 장소의 청소, 전문적인 기술과 장비로 안전하게 해결합니다.",
+      image: "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=800&auto=format&fit=crop&q=80"
     },
     {
-      title: "전문 장비와 친환경 세제",
-      description: "전문 장비와 친환경 세제를 사용해 구석구석 깨끗하게 청소합니다.",
-      image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=800&auto=format&fit=crop&q=80"
+      title: "효율적인 오염 제거",
+      description: "일반 청소로는 해결하기 어려운 오염을 효율적으로 제거하여 쾌적한 환경을 제공합니다.",
+      image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&auto=format&fit=crop&q=80"
     },
     {
-      title: "고객 맞춤형 서비스",
-      description: "고객 맞춤형 서비스로 공간의 특성에 맞는 청소를 제공합니다.",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80"
+      title: "맞춤형 청소 서비스",
+      description: "고객 맞춤형 서비스로 각 상황에 맞는 맞춤형 청소 서비스를 제공합니다.",
+      image: "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=800&auto=format&fit=crop&q=80"
     }
   ];
 
@@ -131,7 +131,7 @@ export default function Service1() {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&auto=format&fit=crop&q=80')"
+              backgroundImage: "url('https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1600&auto=format&fit=crop&q=80')"
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
@@ -150,16 +150,16 @@ export default function Service1() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
               >
-                <Home className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-white">입주청소 전문</span>
+                <Wrench className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-white">특수청소 전문</span>
               </motion.div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white" data-testid="heading-service1">
-                입주청소, <span className="text-primary">왜 필요할까요?</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white" data-testid="heading-service4">
+                특수청소, <span className="text-primary">왜 필요할까요?</span>
               </h1>
               
               <p className="text-lg md:text-xl text-white/80 mb-10">
-                새로운 시작을 위한 완벽한 청소, 홈클린리치가 함께합니다
+                어려운 청소도 전문가에게 맡기세요, 홈클린리치가 해결합니다
               </p>
 
               <motion.div
@@ -245,10 +245,10 @@ export default function Service1() {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="text-primary">홈클린리치</span>와 함께
-                <br />깨끗한 새 출발을 하세요
+                <br />어려운 청소도 쉽게 해결하세요
               </h2>
               <p className="text-lg text-muted-foreground mb-10">
-                전문가의 손길로 완벽하게 청소된 공간에서 새로운 시작을 하세요
+                전문 장비와 기술로 모든 특수 청소 상황에 대응합니다
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/#contact">

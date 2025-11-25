@@ -4,7 +4,7 @@ import { Phone, Menu, X, ArrowUp, MessageCircle, Home, ChevronDown } from "lucid
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 
-export default function Service1() {
+export default function Service2() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -21,27 +21,27 @@ export default function Service1() {
   };
 
   const menuItems = [
-    { label: "입주청소", href: "/service1", active: true },
-    { label: "거주청소", href: "/service2", active: false },
+    { label: "입주청소", href: "/service1", active: false },
+    { label: "거주청소", href: "/service2", active: true },
     { label: "상가청소", href: "/service3", active: false },
     { label: "특수청소", href: "/service4", active: false },
   ];
 
   const benefits = [
     {
-      title: "건강한 환경 조성",
-      description: "새 집으로 이사하기 전, 숨겨진 먼지와 오염물질을 제거하여 건강한 환경을 조성합니다.",
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop&q=80"
+      title: "건강한 환경 유지",
+      description: "매일 생활하는 공간의 먼지와 오염물질을 제거하여 건강한 환경을 유지합니다.",
+      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80"
     },
     {
       title: "전문 장비와 친환경 세제",
       description: "전문 장비와 친환경 세제를 사용해 구석구석 깨끗하게 청소합니다.",
-      image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=800&auto=format&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=800&auto=format&fit=crop&q=80"
     },
     {
-      title: "고객 맞춤형 서비스",
-      description: "고객 맞춤형 서비스로 공간의 특성에 맞는 청소를 제공합니다.",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80"
+      title: "가족 건강 보호",
+      description: "정기적인 청소로 쾌적한 공간을 유지하며 가족의 건강을 보호합니다.",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop&q=80"
     }
   ];
 
@@ -131,7 +131,7 @@ export default function Service1() {
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&auto=format&fit=crop&q=80')"
+              backgroundImage: "url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1600&auto=format&fit=crop&q=80')"
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
@@ -151,15 +151,15 @@ export default function Service1() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
               >
                 <Home className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-white">입주청소 전문</span>
+                <span className="text-sm font-medium text-white">거주청소 전문</span>
               </motion.div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white" data-testid="heading-service1">
-                입주청소, <span className="text-primary">왜 필요할까요?</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white" data-testid="heading-service2">
+                거주청소, <span className="text-primary">왜 필요할까요?</span>
               </h1>
               
               <p className="text-lg md:text-xl text-white/80 mb-10">
-                새로운 시작을 위한 완벽한 청소, 홈클린리치가 함께합니다
+                일상의 쾌적함을 위한 정기 청소, 홈클린리치가 함께합니다
               </p>
 
               <motion.div
@@ -245,10 +245,10 @@ export default function Service1() {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="text-primary">홈클린리치</span>와 함께
-                <br />깨끗한 새 출발을 하세요
+                <br />쾌적한 일상을 만드세요
               </h2>
               <p className="text-lg text-muted-foreground mb-10">
-                전문가의 손길로 완벽하게 청소된 공간에서 새로운 시작을 하세요
+                전문가의 정기 청소로 항상 깨끗한 집에서 생활하세요
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/#contact">
