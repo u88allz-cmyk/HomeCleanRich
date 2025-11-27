@@ -188,10 +188,9 @@ function HeroSection({ scrollToSection }: any) {
     >
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80')` }}
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1920&q=80')` }}
       ></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/95"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent"></div>
+      <div className="absolute inset-0 bg-black/50"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
@@ -204,19 +203,19 @@ function HeroSection({ scrollToSection }: any) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-6 backdrop-blur-sm"
           >
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">전문 청소 서비스</span>
+            <span className="text-sm font-medium text-white">전문 청소 서비스</span>
           </motion.div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-foreground" data-testid="heading-hero">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white" data-testid="heading-hero">
             입주청소의 새로운 기준,
             <br />
             <span className="text-primary">홈클린리치</span>!
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed" data-testid="text-hero-subtitle">
+          <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed" data-testid="text-hero-subtitle">
             전문 장비와 숙련된 인력으로<br className="md:hidden" /> 깨끗하고 안전한 공간을 만들어드립니다
           </p>
 
@@ -239,7 +238,7 @@ function HeroSection({ scrollToSection }: any) {
               size="lg"
               variant="outline"
               onClick={() => scrollToSection("services")}
-              className="gap-2 text-base px-8 h-12 bg-white/80 backdrop-blur-sm"
+              className="gap-2 text-base px-8 h-12 bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm"
               data-testid="button-hero-services"
             >
               서비스 둘러보기
