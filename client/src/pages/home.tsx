@@ -333,19 +333,19 @@ function AdvantagesSection() {
 
   const advantages = [
     {
-      icon: Sparkles,
+      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&auto=format&fit=crop&q=80",
       title: "전문 청소",
       subtitle: "꼼꼼한 청소 CHECK",
       description: "전문 장비와 노하우로\n구석구석 깨끗하게"
     },
     {
-      icon: Users,
+      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&auto=format&fit=crop&q=80",
       title: "맞춤형 서비스",
       subtitle: "고객 맞춤 CHECK",
       description: "고객의 요구사항에 맞춘\n맞춤형 청소 서비스"
     },
     {
-      icon: CheckCircle2,
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&auto=format&fit=crop&q=80",
       title: "신뢰할 수 있는 청소",
       subtitle: "신뢰도 CHECK",
       description: "믿을 수 있는 전문가의\n안전하고 깨끗한 청소"
@@ -378,8 +378,12 @@ function AdvantagesSection() {
             >
               <Card className="h-full hover-elevate transition-all duration-300" data-testid={`card-advantage-${advantage.title}`}>
                 <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
-                    <advantage.icon className="w-8 h-8 text-primary" />
+                  <div className="w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden">
+                    <img 
+                      src={advantage.image} 
+                      alt={advantage.title} 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="text-xl font-bold mb-2" data-testid={`text-advantage-title-${advantage.title}`}>{advantage.title}</h3>
                   <p className="text-sm text-primary font-medium mb-4" data-testid={`text-advantage-subtitle-${advantage.title}`}>{advantage.subtitle}</p>
@@ -405,28 +409,28 @@ function ServicesSection() {
       title: "입주청소",
       subtitle: "입주청소 · 이사청소",
       description: "새 집으로 이사 전 꼼꼼한 입주청소부터 이사 후 정리까지, 완벽한 생활공간을 위한 청소 서비스를 제공합니다.",
-      color: "from-primary/20 to-primary/5",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&auto=format&fit=crop&q=80",
       link: "/service1"
     },
     {
       title: "거주청소",
       subtitle: "거주청소 · 정기청소",
       description: "일상 생활 속 쌓인 먼지와 오염물을 전문적인 기술과 장비로 깨끗하게 제거하여 쾌적한 환경을 유지합니다.",
-      color: "from-blue-500/20 to-blue-500/5",
+      image: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=600&auto=format&fit=crop&q=80",
       link: "/service2"
     },
     {
       title: "상가청소",
       subtitle: "상가청소 · 사무실청소",
       description: "매장, 사무실, 상업공간의 청결을 유지하여 고객 만족도와 직원 업무 효율성을 높이는 맞춤형 청소 서비스를 제공합니다.",
-      color: "from-purple-500/20 to-purple-500/5",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&auto=format&fit=crop&q=80",
       link: "/service3"
     },
     {
       title: "특수청소",
       subtitle: "특수청소 · 화재복구",
       description: "화재, 수해 등 특수 상황 발생 시 전문적인 장비와 기술로 신속하게 복구하여 안전한 환경을 회복할 수 있도록 도와드립니다.",
-      color: "from-orange-500/20 to-orange-500/5",
+      image: "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=600&auto=format&fit=crop&q=80",
       link: "/service4"
     }
   ];
@@ -456,7 +460,13 @@ function ServicesSection() {
               transition={{ delay: index * 0.15, duration: 0.6 }}
             >
               <Card className="h-full hover-elevate transition-all duration-300 overflow-hidden flex flex-col" data-testid={`card-service-${service.title}`}>
-                <div className={`h-32 bg-gradient-to-br ${service.color}`}></div>
+                <div className="h-40 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  />
+                </div>
                 <CardContent className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-bold mb-1" data-testid={`text-service-title-${service.title}`}>{service.title}</h3>
                   <p className="text-sm text-primary font-medium mb-4" data-testid={`text-service-subtitle-${service.title}`}>{service.subtitle}</p>
