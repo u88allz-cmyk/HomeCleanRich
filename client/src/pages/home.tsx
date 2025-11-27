@@ -455,12 +455,12 @@ function ServicesSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.15, duration: 0.6 }}
             >
-              <Card className="h-full hover-elevate transition-all duration-300 overflow-hidden" data-testid={`card-service-${service.title}`}>
+              <Card className="h-full hover-elevate transition-all duration-300 overflow-hidden flex flex-col" data-testid={`card-service-${service.title}`}>
                 <div className={`h-32 bg-gradient-to-br ${service.color}`}></div>
-                <CardContent className="p-6">
+                <CardContent className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-bold mb-1" data-testid={`text-service-title-${service.title}`}>{service.title}</h3>
                   <p className="text-sm text-primary font-medium mb-4" data-testid={`text-service-subtitle-${service.title}`}>{service.subtitle}</p>
-                  <p className="text-sm text-muted-foreground mb-6 leading-relaxed" data-testid={`text-service-description-${service.title}`}>
+                  <p className="text-sm text-muted-foreground mb-6 leading-relaxed flex-1" data-testid={`text-service-description-${service.title}`}>
                     {service.description}
                   </p>
                   <Link href={service.link}>
