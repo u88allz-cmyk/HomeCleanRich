@@ -108,11 +108,10 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
         <div className="flex items-center justify-between h-20">
           <button 
             onClick={() => scrollToSection("hero")}
-            className="flex items-center gap-1.5 hover-elevate active-elevate-2 px-3 py-2 rounded-md"
+            className="hover-elevate active-elevate-2 px-2 py-1 rounded-md"
             data-testid="link-logo"
           >
-            <img src={logoImage} alt="홈클린리치 로고" className="h-8 w-8 object-contain" />
-            <span className="text-xl font-bold text-primary leading-none">홈클린리치</span>
+            <img src={logoImage} alt="홈클린리치 로고" className="h-14 w-auto object-contain" />
           </button>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -365,9 +364,8 @@ function AdvantagesSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3" data-testid="heading-advantages">
-            <img src={logoImage} alt="홈클린리치 로고" className="h-10 md:h-12 w-auto object-contain" />
-            <span>홈클린리치만의 <span className="text-primary">특별함</span></span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-advantages">
+            홈클린리치만의 <span className="text-primary">특별함</span>
           </h2>
           <p className="text-lg text-muted-foreground" data-testid="text-advantages-subtitle">
             고객 만족을 위한 3가지 약속
