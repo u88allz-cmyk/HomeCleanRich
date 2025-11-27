@@ -339,7 +339,7 @@ function AdvantagesSection() {
       description: "전문 장비와 노하우로\n구석구석 깨끗하게"
     },
     {
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&auto=format&fit=crop&q=80",
       title: "맞춤형 서비스",
       subtitle: "고객 맞춤 CHECK",
       description: "고객의 요구사항에 맞춘\n맞춤형 청소 서비스"
@@ -409,7 +409,7 @@ function ServicesSection() {
       title: "입주청소",
       subtitle: "입주청소 · 이사청소",
       description: "새 집으로 이사 전 꼼꼼한 입주청소부터 이사 후 정리까지, 완벽한 생활공간을 위한 청소 서비스를 제공합니다.",
-      image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=600&auto=format&fit=crop&q=80",
       link: "/service1"
     },
     {
@@ -423,14 +423,14 @@ function ServicesSection() {
       title: "상가청소",
       subtitle: "상가청소 · 사무실청소",
       description: "매장, 사무실, 상업공간의 청결을 유지하여 고객 만족도와 직원 업무 효율성을 높이는 맞춤형 청소 서비스를 제공합니다.",
-      image: "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&auto=format&fit=crop&q=80",
       link: "/service3"
     },
     {
       title: "특수청소",
       subtitle: "특수청소 · 화재복구",
       description: "화재, 수해 등 특수 상황 발생 시 전문적인 장비와 기술로 신속하게 복구하여 안전한 환경을 회복할 수 있도록 도와드립니다.",
-      image: "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&auto=format&fit=crop&q=80",
       link: "/service4"
     }
   ];
