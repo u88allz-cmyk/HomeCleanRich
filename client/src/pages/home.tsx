@@ -365,8 +365,9 @@ function AdvantagesSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-advantages">
-            홈클린리치만의 <span className="text-primary">특별함</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-3" data-testid="heading-advantages">
+            <img src={logoImage} alt="홈클린리치 로고" className="h-10 md:h-12 w-auto object-contain" />
+            <span>홈클린리치만의 <span className="text-primary">특별함</span></span>
           </h2>
           <p className="text-lg text-muted-foreground" data-testid="text-advantages-subtitle">
             고객 만족을 위한 3가지 약속
