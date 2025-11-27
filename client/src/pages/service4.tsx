@@ -4,6 +4,8 @@ import { Menu, X, ArrowUp, Wrench, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/logo.webp";
+import specialEquipmentImage from "@assets/special-equipment.webp";
+import specialContaminationImage from "@assets/special-contamination.webp";
 
 export default function Service4() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,12 +34,12 @@ export default function Service4() {
     {
       title: "전문 기술과 장비",
       description: "쓰레기 집이나 더러운 장소의 청소, 전문적인 기술과 장비로 안전하게 해결합니다.",
-      image: "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=800&auto=format&fit=crop&q=80"
+      image: specialEquipmentImage
     },
     {
       title: "효율적인 오염 제거",
       description: "일반 청소로는 해결하기 어려운 오염을 효율적으로 제거하여 쾌적한 환경을 제공합니다.",
-      image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&auto=format&fit=crop&q=80"
+      image: specialContaminationImage
     },
     {
       title: "맞춤형 청소 서비스",
