@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
-import { Phone, Mail, MapPin, CheckCircle2, Sparkles, Users, Clock, ArrowRight, Menu, X } from "lucide-react";
+import { Mail, MapPin, CheckCircle2, Sparkles, Users, Clock, ArrowRight, Menu, X } from "lucide-react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -130,10 +130,8 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
           <div className="hidden md:block">
             <Button 
               onClick={() => scrollToSection("contact")}
-              className="gap-2"
               data-testid="button-consultation"
             >
-              <Phone className="w-4 h-4" />
               상담 신청
             </Button>
           </div>
@@ -166,10 +164,9 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
               ))}
               <Button 
                 onClick={() => scrollToSection("contact")}
-                className="gap-2 mx-4"
+                className="mx-4"
                 data-testid="button-mobile-consultation"
               >
-                <Phone className="w-4 h-4" />
                 상담 신청
               </Button>
             </nav>
@@ -229,10 +226,9 @@ function HeroSection({ scrollToSection }: any) {
             <Button 
               size="lg"
               onClick={() => scrollToSection("contact")}
-              className="gap-2 text-base px-8 h-12"
+              className="text-base px-8 h-12"
               data-testid="button-hero-consultation"
             >
-              <Phone className="w-5 h-5" />
               무료 상담 신청
             </Button>
             <Button 
@@ -1008,8 +1004,7 @@ function Footer({ scrollToSection }: any) {
           <div>
             <h4 className="font-semibold mb-4">문의</h4>
             <ul className="space-y-2 text-sm">
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <Phone className="w-4 h-4" />
+              <li className="text-muted-foreground">
                 <span>[대표전화]</span>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
