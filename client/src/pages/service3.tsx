@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowUp, MessageCircle, Building2, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowUp, Building2, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/logo.webp";
@@ -255,16 +255,6 @@ export default function Service3() {
                     상담 신청하기
                   </Button>
                 </Link>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="gap-2 w-full sm:w-auto text-lg px-8"
-                  onClick={() => window.open("https://open.kakao.com/o/sTKJQLnh", "_blank")}
-                  data-testid="button-cta-kakao"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  카카오톡 문의
-                </Button>
               </div>
             </motion.div>
           </div>
