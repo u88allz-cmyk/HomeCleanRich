@@ -405,25 +405,29 @@ function ServicesSection() {
       title: "입주청소",
       subtitle: "입주청소 · 이사청소",
       description: "새 집으로 이사 전 꼼꼼한 입주청소부터 이사 후 정리까지, 완벽한 생활공간을 위한 청소 서비스를 제공합니다.",
-      color: "from-primary/20 to-primary/5"
+      color: "from-primary/20 to-primary/5",
+      link: "/service1"
     },
     {
       title: "거주청소",
       subtitle: "거주청소 · 정기청소",
       description: "일상 생활 속 쌓인 먼지와 오염물을 전문적인 기술과 장비로 깨끗하게 제거하여 쾌적한 환경을 유지합니다.",
-      color: "from-blue-500/20 to-blue-500/5"
+      color: "from-blue-500/20 to-blue-500/5",
+      link: "/service2"
     },
     {
       title: "상가청소",
       subtitle: "상가청소 · 사무실청소",
       description: "매장, 사무실, 상업공간의 청결을 유지하여 고객 만족도와 직원 업무 효율성을 높이는 맞춤형 청소 서비스를 제공합니다.",
-      color: "from-purple-500/20 to-purple-500/5"
+      color: "from-purple-500/20 to-purple-500/5",
+      link: "/service3"
     },
     {
       title: "특수청소",
       subtitle: "특수청소 · 화재복구",
       description: "화재, 수해 등 특수 상황 발생 시 전문적인 장비와 기술로 신속하게 복구하여 안전한 환경을 회복할 수 있도록 도와드립니다.",
-      color: "from-orange-500/20 to-orange-500/5"
+      color: "from-orange-500/20 to-orange-500/5",
+      link: "/service4"
     }
   ];
 
@@ -459,14 +463,16 @@ function ServicesSection() {
                   <p className="text-sm text-muted-foreground mb-6 leading-relaxed" data-testid={`text-service-description-${service.title}`}>
                     {service.description}
                   </p>
-                  <Button 
-                    variant="ghost" 
-                    className="w-full justify-between group"
-                    data-testid={`button-service-detail-${service.title}`}
-                  >
-                    자세히 보기
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                  <Link href={service.link}>
+                    <Button 
+                      variant="ghost" 
+                      className="w-full justify-between group"
+                      data-testid={`button-service-detail-${service.title}`}
+                    >
+                      자세히 보기
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </motion.div>
