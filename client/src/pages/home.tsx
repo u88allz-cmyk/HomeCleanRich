@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
-import { Mail, MapPin, CheckCircle2, Sparkles, Users, Clock, ArrowRight, Menu, X } from "lucide-react";
+import { Phone, MapPin, CheckCircle2, Sparkles, Users, Clock, ArrowRight, Menu, X } from "lucide-react";
 import { ConsultationButton } from "@/components/consultation-button";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
@@ -998,24 +998,21 @@ function Footer({ scrollToSection }: any) {
           <div>
             <h4 className="font-semibold mb-4">회사정보</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>대표자: [대표자명]</li>
-              <li>사업자번호: [사업자번호]</li>
+              <li>회사명: 홈클린리치</li>
+              <li>사업자번호: 768-79-00494</li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold mb-4">문의</h4>
             <ul className="space-y-2 text-sm">
-              <li className="text-muted-foreground">
-                <span>[대표전화]</span>
-              </li>
               <li className="flex items-center gap-2 text-muted-foreground">
-                <Mail className="w-4 h-4" />
-                <span>[이메일]</span>
+                <Phone className="w-4 h-4" />
+                <span>대표전화: 070-1361-1659</span>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5" />
-                <span>[주소]</span>
+                <span>주소: 경기 구리시 교문동 230-1<br />유탑블레스시티 17층 D36호</span>
               </li>
             </ul>
           </div>
