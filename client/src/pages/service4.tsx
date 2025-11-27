@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Phone, Menu, X, ArrowUp, MessageCircle, Wrench, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowUp, MessageCircle, Wrench, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import logoImage from "@assets/KakaoTalk_20251127_163101219-Photoroom_1764229044269.png";
 
 export default function Service4() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -56,10 +57,10 @@ export default function Service4() {
           <div className="flex items-center justify-between h-20">
             <Link 
               href="/"
-              className="text-2xl font-bold text-primary hover-elevate active-elevate-2 px-3 py-2 rounded-md"
+              className="hover-elevate active-elevate-2 px-2 py-1 rounded-md"
               data-testid="link-logo"
             >
-              홈클린리치
+              <img src={logoImage} alt="홈클린리치 로고" className="h-16 md:h-24 w-auto object-contain" />
             </Link>
 
             <nav className="hidden md:flex items-center gap-8">
@@ -79,8 +80,7 @@ export default function Service4() {
 
             <div className="hidden md:block">
               <Link href="/#contact">
-                <Button className="gap-2" data-testid="button-consultation">
-                  <Phone className="w-4 h-4" />
+                <Button data-testid="button-consultation">
                   상담 신청
                 </Button>
               </Link>
@@ -115,8 +115,7 @@ export default function Service4() {
                   </Link>
                 ))}
                 <Link href="/#contact">
-                  <Button className="gap-2 mx-4 w-[calc(100%-2rem)]" data-testid="button-mobile-consultation">
-                    <Phone className="w-4 h-4" />
+                  <Button className="mx-4 w-[calc(100%-2rem)]" data-testid="button-mobile-consultation">
                     상담 신청
                   </Button>
                 </Link>
@@ -252,8 +251,7 @@ export default function Service4() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/#contact">
-                  <Button size="lg" className="gap-2 w-full sm:w-auto text-lg px-8" data-testid="button-cta-consultation">
-                    <Phone className="w-5 h-5" />
+                  <Button size="lg" className="w-full sm:w-auto text-lg px-8" data-testid="button-cta-consultation">
                     상담 신청하기
                   </Button>
                 </Link>
