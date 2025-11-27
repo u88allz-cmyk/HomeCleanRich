@@ -670,7 +670,7 @@ function ReviewsSection() {
           </div>
 
           <p className="text-center text-sm text-muted-foreground mt-4">
-            좌우로 스와이프하거나 점을 클릭하세요
+            좌우로 스와이프하거나 점을 클릭하세요 · 이미지를 클릭하면 크게 볼 수 있어요
           </p>
         </motion.div>
       </div>
