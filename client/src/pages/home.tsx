@@ -108,11 +108,11 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
         <div className="flex items-center justify-between h-20">
           <button 
             onClick={() => scrollToSection("hero")}
-            className="flex items-center gap-2 hover-elevate active-elevate-2 px-3 py-2 rounded-md"
+            className="flex items-center gap-1.5 hover-elevate active-elevate-2 px-3 py-2 rounded-md"
             data-testid="link-logo"
           >
-            <img src={logoImage} alt="홈클린리치 로고" className="h-10 w-auto" />
-            <span className="text-2xl font-bold text-primary">홈클린리치</span>
+            <img src={logoImage} alt="홈클린리치 로고" className="h-8 w-8 object-contain" />
+            <span className="text-xl font-bold text-primary leading-none">홈클린리치</span>
           </button>
 
           <nav className="hidden md:flex items-center gap-8">
