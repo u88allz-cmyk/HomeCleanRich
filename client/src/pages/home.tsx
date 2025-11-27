@@ -16,9 +16,10 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
-import logoImage from "@assets/KakaoTalk_20251127_163101219-Photoroom_1764229044269.png";
-import commercialCleaningImg from "@assets/제목을-입력해주세요_-001 (1)_1764231076475.png";
-import specialCleaningImg from "@assets/제목을-입력해주세요_-001_1764231079101.png";
+import logoImage from "@assets/logo.webp";
+import commercialCleaningImg from "@assets/commercial-cleaning.webp";
+import specialCleaningImg from "@assets/special-cleaning.webp";
+import moveinCleaningImg from "@assets/movein-cleaning.webp";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -411,7 +412,7 @@ function ServicesSection() {
       title: "입주청소",
       subtitle: "입주청소 · 이사청소",
       description: "새 집으로 이사 전 꼼꼼한 입주청소부터 이사 후 정리까지, 완벽한 생활공간을 위한 청소 서비스를 제공합니다.",
-      image: "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=600&auto=format&fit=crop&q=80",
+      image: moveinCleaningImg,
       link: "/service1"
     },
     {

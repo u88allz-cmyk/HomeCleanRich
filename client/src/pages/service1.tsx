@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowUp, MessageCircle, Home, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import logoImage from "@assets/KakaoTalk_20251127_163101219-Photoroom_1764229044269.png";
+import logoImage from "@assets/logo.webp";
 
 export default function Service1() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
