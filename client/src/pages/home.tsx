@@ -333,7 +333,7 @@ function AdvantagesSection() {
 
   const advantages = [
     {
-      image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&auto=format&fit=crop&q=80",
       title: "전문 청소",
       subtitle: "꼼꼼한 청소 CHECK",
       description: "전문 장비와 노하우로\n구석구석 깨끗하게"
@@ -423,14 +423,14 @@ function ServicesSection() {
       title: "상가청소",
       subtitle: "상가청소 · 사무실청소",
       description: "매장, 사무실, 상업공간의 청결을 유지하여 고객 만족도와 직원 업무 효율성을 높이는 맞춤형 청소 서비스를 제공합니다.",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1555636222-cae831e670b3?w=600&auto=format&fit=crop&q=80",
       link: "/service3"
     },
     {
       title: "특수청소",
       subtitle: "특수청소 · 화재복구",
       description: "화재, 수해 등 특수 상황 발생 시 전문적인 장비와 기술로 신속하게 복구하여 안전한 환경을 회복할 수 있도록 도와드립니다.",
-      image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&auto=format&fit=crop&q=80",
+      image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&auto=format&fit=crop&q=80",
       link: "/service4"
     }
   ];
