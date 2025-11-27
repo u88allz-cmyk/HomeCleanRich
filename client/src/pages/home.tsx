@@ -11,16 +11,28 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
-import { Phone, MapPin, CheckCircle2, Sparkles, Users, Clock, ArrowRight, Menu, X } from "lucide-react";
+import { Phone, MapPin, CheckCircle2, Sparkles, Users, Clock, ArrowRight, Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { ConsultationButton } from "@/components/consultation-button";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import logoImage from "@assets/logo.webp";
 import commercialCleaningImg from "@assets/commercial-cleaning.webp";
 import specialCleaningImg from "@assets/special-cleaning.webp";
 import moveinCleaningImg from "@assets/movein-cleaning.webp";
+import reviewImg1 from "@assets/image_1764233682587.webp";
+import reviewImg2 from "@assets/image_1764233686566.webp";
+import reviewImg3 from "@assets/image_1764233690179.webp";
+import reviewImg4 from "@assets/image_1764233693784.webp";
+import reviewImg5 from "@assets/image_1764233697576.webp";
+import reviewImg6 from "@assets/image_1764233701660.webp";
+import reviewImg7 from "@assets/image_1764233705225.webp";
+import reviewImg8 from "@assets/image_1764233708892.webp";
+import reviewImg9 from "@assets/image_1764233712192.webp";
+import reviewImg10 from "@assets/image_1764233715342.webp";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -540,32 +552,19 @@ function BeforeAfterSection() {
 function ReviewsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const reviews = [
-    {
-      name: "김**님",
-      service: "입주청소",
-      rating: 5,
-      comment: "이사 전 입주청소를 맡겼는데 정말 꼼꼼하게 해주셨어요. 새집처럼 깨끗해져서 너무 만족합니다!"
-    },
-    {
-      name: "이**님",
-      service: "거주청소",
-      rating: 5,
-      comment: "정기 청소 서비스 이용 중인데 항상 친절하고 깨끗하게 청소해주셔서 감사합니다. 추천드려요!"
-    },
-    {
-      name: "박**님",
-      service: "상가청소",
-      rating: 5,
-      comment: "사무실 청소를 맡겼는데 직원들 모두 만족해합니다. 전문적이고 신속한 서비스 감사합니다."
-    },
-    {
-      name: "정**님",
-      service: "특수청소",
-      rating: 5,
-      comment: "화재 후 복구 청소를 해주셨는데 정말 힘든 시기에 큰 도움이 되었습니다. 진심으로 감사드립니다."
-    }
+  const reviewImages = [
+    { id: 1, src: reviewImg1, alt: "고객 리뷰 1 - 화성시 입주청소" },
+    { id: 2, src: reviewImg2, alt: "고객 리뷰 2 - 인천 서구 입주청소" },
+    { id: 3, src: reviewImg3, alt: "고객 리뷰 3 - 안양시 입주청소" },
+    { id: 4, src: reviewImg4, alt: "고객 리뷰 4 - 고양시 입주청소" },
+    { id: 5, src: reviewImg5, alt: "고객 리뷰 5 - 서울 강동구 입주청소" },
+    { id: 6, src: reviewImg6, alt: "고객 리뷰 6 - 수원시 입주청소" },
+    { id: 7, src: reviewImg7, alt: "고객 리뷰 7 - 인천 서구 입주청소" },
+    { id: 8, src: reviewImg8, alt: "고객 리뷰 8 - 인천 중구 입주청소" },
+    { id: 9, src: reviewImg9, alt: "고객 리뷰 9 - 인천 서구 입주청소" },
+    { id: 10, src: reviewImg10, alt: "고객 리뷰 10 - 부천시 입주청소" },
   ];
 
   return (
@@ -574,7 +573,7 @@ function ReviewsSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-reviews">
             Review <span className="text-primary">홈클린리치</span>의 솔직리뷰
@@ -584,36 +583,81 @@ function ReviewsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {reviews.map((review, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.15, duration: 0.6 }}
-            >
-              <Card className="h-full hover-elevate transition-all duration-300" data-testid={`card-review-${index}`}>
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-1 mb-3" data-testid={`rating-${index}`}>
-                    {[...Array(review.rating)].map((_, i) => (
-                      <span key={i} className="text-primary text-lg">★</span>
-                    ))}
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed" data-testid={`text-review-comment-${index}`}>
-                    {review.comment}
-                  </p>
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
-                    <span className="text-sm font-medium" data-testid={`text-review-name-${index}`}>{review.name}</span>
-                    <Badge variant="secondary" className="text-xs" data-testid={`badge-review-service-${index}`}>
-                      {review.service}
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="max-w-7xl mx-auto"
+        >
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+              dragFree: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {reviewImages.map((image, index) => (
+                <CarouselItem 
+                  key={image.id} 
+                  className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                  >
+                    <Card 
+                      className="overflow-hidden hover-elevate cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-primary/20"
+                      onClick={() => setSelectedImage(image.src)}
+                      data-testid={`card-review-image-${image.id}`}
+                    >
+                      <div className="aspect-[4/5] relative overflow-hidden bg-muted">
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-full object-cover object-top"
+                          loading="lazy"
+                        />
+                      </div>
+                    </Card>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious 
+              className="hidden md:flex -left-4 lg:-left-12 h-10 w-10 bg-background/90 backdrop-blur-sm shadow-lg border-primary/20"
+              data-testid="button-carousel-prev"
+            />
+            <CarouselNext 
+              className="hidden md:flex -right-4 lg:-right-12 h-10 w-10 bg-background/90 backdrop-blur-sm shadow-lg border-primary/20"
+              data-testid="button-carousel-next"
+            />
+          </Carousel>
+
+          <p className="text-center text-sm text-muted-foreground mt-6">
+            좌우로 슬라이드하여 더 많은 리뷰를 확인하세요
+          </p>
+        </motion.div>
       </div>
+
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-4xl w-[95vw] p-2 bg-background/95 backdrop-blur-md">
+          <DialogTitle className="sr-only">고객 리뷰 상세 보기</DialogTitle>
+          <DialogDescription className="sr-only">고객님의 솔직한 청소 서비스 리뷰입니다</DialogDescription>
+          {selectedImage && (
+            <div className="relative w-full max-h-[85vh] overflow-auto rounded-lg">
+              <img
+                src={selectedImage}
+                alt="고객 리뷰 상세"
+                className="w-full h-auto object-contain"
+                data-testid="img-review-lightbox"
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
