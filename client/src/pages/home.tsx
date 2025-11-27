@@ -553,6 +553,8 @@ function ReviewsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [api, setApi] = useState<any>(null);
 
   const reviewImages = [
     { id: 1, src: reviewImg1, alt: "고객 리뷰 1 - 화성시 입주청소" },
@@ -566,6 +568,35 @@ function ReviewsSection() {
     { id: 9, src: reviewImg9, alt: "고객 리뷰 9 - 인천 서구 입주청소" },
     { id: 10, src: reviewImg10, alt: "고객 리뷰 10 - 부천시 입주청소" },
   ];
+
+  useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+    
+    const autoplayInterval = setInterval(() => {
+      if (api.canScrollNext()) {
+        api.scrollNext();
+      } else {
+        api.scrollTo(0);
+      }
+    }, 4000);
+
+    return () => {
+      api.off("select", onSelect);
+      clearInterval(autoplayInterval);
+    };
+  }, [api]);
+
+  const scrollToSlide = (index: number) => {
+    api?.scrollTo(index);
+  };
+
+  const totalDots = Math.ceil(reviewImages.length / 3);
 
   return (
     <section id="reviews" ref={ref} className="py-20 md:py-28 bg-card" data-testid="section-reviews">
@@ -587,57 +618,59 @@ function ReviewsSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="max-w-7xl mx-auto"
+          className="max-w-6xl mx-auto"
         >
           <Carousel
+            setApi={setApi}
             opts={{
               align: "start",
               loop: true,
-              dragFree: true,
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-2 md:-ml-4">
+            <CarouselContent className="-ml-3">
               {reviewImages.map((image, index) => (
                 <CarouselItem 
                   key={image.id} 
-                  className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3"
+                  className="pl-3 basis-[85%] sm:basis-[45%] md:basis-1/3 lg:basis-1/4"
                 >
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                  <Card 
+                    className="overflow-hidden hover-elevate cursor-pointer transition-all duration-300 border border-border hover:border-primary/30 shadow-sm hover:shadow-md"
+                    onClick={() => setSelectedImage(image.src)}
+                    data-testid={`card-review-image-${image.id}`}
                   >
-                    <Card 
-                      className="overflow-hidden hover-elevate cursor-pointer transition-all duration-300 border-2 border-transparent hover:border-primary/20"
-                      onClick={() => setSelectedImage(image.src)}
-                      data-testid={`card-review-image-${image.id}`}
-                    >
-                      <div className="aspect-[4/5] relative overflow-hidden bg-muted">
-                        <img
-                          src={image.src}
-                          alt={image.alt}
-                          className="w-full h-full object-cover object-top"
-                          loading="lazy"
-                        />
-                      </div>
-                    </Card>
-                  </motion.div>
+                    <div className="relative bg-white rounded-md overflow-hidden">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-auto object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  </Card>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious 
-              className="hidden md:flex -left-4 lg:-left-12 h-10 w-10 bg-background/90 backdrop-blur-sm shadow-lg border-primary/20"
-              data-testid="button-carousel-prev"
-            />
-            <CarouselNext 
-              className="hidden md:flex -right-4 lg:-right-12 h-10 w-10 bg-background/90 backdrop-blur-sm shadow-lg border-primary/20"
-              data-testid="button-carousel-next"
-            />
           </Carousel>
 
-          <p className="text-center text-sm text-muted-foreground mt-6">
-            좌우로 슬라이드하여 더 많은 리뷰를 확인하세요
+          <div className="flex justify-center items-center gap-2 mt-8">
+            {[...Array(totalDots)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToSlide(index * 3)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  Math.floor(currentSlide / 3) === index 
+                    ? "bg-primary w-6" 
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                }`}
+                data-testid={`button-dot-${index}`}
+                aria-label={`슬라이드 ${index + 1}로 이동`}
+              />
+            ))}
+          </div>
+
+          <p className="text-center text-sm text-muted-foreground mt-4">
+            좌우로 스와이프하거나 점을 클릭하세요
           </p>
         </motion.div>
       </div>
