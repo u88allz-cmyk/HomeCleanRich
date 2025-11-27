@@ -16,7 +16,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
-import logoImage from "@assets/KakaoTalk_20251113_123250425-Photoroom_1764227764070.png";
+import logoImage from "@assets/KakaoTalk_20251127_163101219-Photoroom_1764229044269.png";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -111,7 +111,7 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
             className="hover-elevate active-elevate-2 px-2 py-1 rounded-md"
             data-testid="link-logo"
           >
-            <img src={logoImage} alt="홈클린리치 로고" className="h-14 w-auto object-contain" />
+            <img src={logoImage} alt="홈클린리치 로고" className="h-20 w-auto object-contain" />
           </button>
 
           <nav className="hidden md:flex items-center gap-8">
