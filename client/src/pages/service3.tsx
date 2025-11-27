@@ -4,6 +4,7 @@ import { Menu, X, ArrowUp, Building2, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/logo.webp";
+import { ConsultationButton } from "@/components/consultation-button";
 
 export default function Service3() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -79,11 +80,7 @@ export default function Service3() {
             </nav>
 
             <div className="hidden md:block">
-              <Link href="/#contact">
-                <Button data-testid="button-consultation">
-                  상담 신청
-                </Button>
-              </Link>
+              <ConsultationButton />
             </div>
 
             <button
@@ -114,11 +111,7 @@ export default function Service3() {
                     {item.label}
                   </Link>
                 ))}
-                <Link href="/#contact">
-                  <Button className="mx-4 w-[calc(100%-2rem)]" data-testid="button-mobile-consultation">
-                    상담 신청
-                  </Button>
-                </Link>
+                <ConsultationButton className="mx-4" fullWidth />
               </nav>
             </motion.div>
           )}
@@ -250,11 +243,7 @@ export default function Service3() {
                 깨끗한 매장 환경으로 고객의 신뢰를 얻으세요
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/#contact">
-                  <Button size="lg" className="w-full sm:w-auto text-lg px-8" data-testid="button-cta-consultation">
-                    상담 신청하기
-                  </Button>
-                </Link>
+                <ConsultationButton size="lg" className="w-full sm:w-auto text-lg px-8" />
               </div>
             </motion.div>
           </div>

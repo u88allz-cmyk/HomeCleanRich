@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
 import { Mail, MapPin, CheckCircle2, Sparkles, Users, Clock, ArrowRight, Menu, X } from "lucide-react";
+import { ConsultationButton } from "@/components/consultation-button";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -131,12 +132,7 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
           </nav>
 
           <div className="hidden md:block">
-            <Button 
-              onClick={() => scrollToSection("contact")}
-              data-testid="button-consultation"
-            >
-              상담 신청
-            </Button>
+            <ConsultationButton data-testid="button-consultation" />
           </div>
 
           <button
@@ -165,13 +161,10 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
                   {item.label}
                 </Link>
               ))}
-              <Button 
-                onClick={() => scrollToSection("contact")}
-                className="mx-4"
-                data-testid="button-mobile-consultation"
-              >
-                상담 신청
-              </Button>
+              <ConsultationButton 
+                className="mx-4" 
+                fullWidth 
+              />
             </nav>
           </motion.div>
         )}
@@ -226,14 +219,10 @@ function HeroSection({ scrollToSection }: any) {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <Button 
+            <ConsultationButton 
               size="lg"
-              onClick={() => scrollToSection("contact")}
               className="text-base px-8 h-12"
-              data-testid="button-hero-consultation"
-            >
-              무료 상담 신청
-            </Button>
+            />
             <Button 
               size="lg"
               variant="outline"
