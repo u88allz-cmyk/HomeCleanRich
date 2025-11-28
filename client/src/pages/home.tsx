@@ -127,7 +127,7 @@ function Header({ scrollToSection, mobileMenuOpen, setMobileMenuOpen, activeSect
             className="hover-elevate active-elevate-2 px-2 py-1 rounded-md mt-1"
             data-testid="link-logo"
           >
-            <img src={logoImage} alt="홈클린리치 로고" className="h-16 md:h-24 w-auto object-contain" />
+            <img src={logoImage} alt="홈클린리치 로고" className="h-16 md:h-24 w-auto object-contain contrast-110 saturate-110" style={{ imageRendering: 'crisp-edges' }} />
           </button>
 
           <nav className="hidden md:flex items-center gap-8">
