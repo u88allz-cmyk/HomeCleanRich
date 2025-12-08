@@ -503,48 +503,12 @@ function BeforeAfterSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    {
-      id: 1,
-      title: "곰팡이 제거, 이제 고민하지 마세요!",
-      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
-      beforeAlt: "곰팡이 제거 전",
-      afterAlt: "곰팡이 제거 후"
-    },
-    {
-      id: 2,
-      title: "주방 기름때, 완벽하게 제거!",
-      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
-      beforeAlt: "주방 청소 전",
-      afterAlt: "주방 청소 후"
-    },
-    {
-      id: 3,
-      title: "욕실 물때, 깔끔하게 해결!",
-      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
-      beforeAlt: "욕실 청소 전",
-      afterAlt: "욕실 청소 후"
-    },
-    {
-      id: 4,
-      title: "바닥 얼룩, 새것처럼 복원!",
-      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
-      beforeAlt: "바닥 청소 전",
-      afterAlt: "바닥 청소 후"
-    },
-    {
-      id: 5,
-      title: "창문 청소, 투명하게!",
-      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
-      beforeAlt: "창문 청소 전",
-      afterAlt: "창문 청소 후"
-    },
-    {
-      id: 6,
-      title: "에어컨 청소, 쾌적한 공기!",
-      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
-      beforeAlt: "에어컨 청소 전",
-      afterAlt: "에어컨 청소 후"
-    }
+    { id: 1, beforeAlt: "작업 전 1", afterAlt: "작업 후 1" },
+    { id: 2, beforeAlt: "작업 전 2", afterAlt: "작업 후 2" },
+    { id: 3, beforeAlt: "작업 전 3", afterAlt: "작업 후 3" },
+    { id: 4, beforeAlt: "작업 전 4", afterAlt: "작업 후 4" },
+    { id: 5, beforeAlt: "작업 전 5", afterAlt: "작업 후 5" },
+    { id: 6, beforeAlt: "작업 전 6", afterAlt: "작업 후 6" }
   ];
 
   const nextSlide = () => {
@@ -573,10 +537,10 @@ function BeforeAfterSection() {
           </h2>
           <div className="w-px h-12 bg-white/50 mx-auto mb-6"></div>
           <p className="text-xl md:text-2xl font-medium text-white/90 mb-2" data-testid="text-before-after-title">
-            {slides[currentSlide].title}
+            청소, 이제 고민하지 마세요!
           </p>
           <p className="text-lg text-white/80" data-testid="text-before-after-subtitle">
-            {slides[currentSlide].subtitle}
+            전문 청소로 깨끗한 공간을 되찾아드립니다.
           </p>
         </motion.div>
 
