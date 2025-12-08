@@ -500,50 +500,158 @@ function ServicesSection() {
 function BeforeAfterSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const images = Array(6).fill(null).map((_, i) => ({
-    id: i,
-    title: `작업 사례 ${i + 1}`
-  }));
+  const slides = [
+    {
+      id: 1,
+      title: "곰팡이 제거, 이제 고민하지 마세요!",
+      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
+      beforeAlt: "곰팡이 제거 전",
+      afterAlt: "곰팡이 제거 후"
+    },
+    {
+      id: 2,
+      title: "주방 기름때, 완벽하게 제거!",
+      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
+      beforeAlt: "주방 청소 전",
+      afterAlt: "주방 청소 후"
+    },
+    {
+      id: 3,
+      title: "욕실 물때, 깔끔하게 해결!",
+      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
+      beforeAlt: "욕실 청소 전",
+      afterAlt: "욕실 청소 후"
+    },
+    {
+      id: 4,
+      title: "바닥 얼룩, 새것처럼 복원!",
+      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
+      beforeAlt: "바닥 청소 전",
+      afterAlt: "바닥 청소 후"
+    },
+    {
+      id: 5,
+      title: "창문 청소, 투명하게!",
+      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
+      beforeAlt: "창문 청소 전",
+      afterAlt: "창문 청소 후"
+    },
+    {
+      id: 6,
+      title: "에어컨 청소, 쾌적한 공기!",
+      subtitle: "전문 청소로 깨끗한 공간을 되찾아드립니다.",
+      beforeAlt: "에어컨 청소 전",
+      afterAlt: "에어컨 청소 후"
+    }
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
 
   return (
-    <section id="before-after" ref={ref} className="py-20 md:py-28" data-testid="section-before-after">
+    <section 
+      id="before-after" 
+      ref={ref} 
+      className="py-20 md:py-28" 
+      style={{ backgroundColor: '#2563EB' }}
+      data-testid="section-before-after"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="heading-before-after">
-            Before & After <span className="text-primary">홈클린리치</span> 작업 사례
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white" data-testid="heading-before-after">
+            홈클린리치 작업 사례
           </h2>
-          <p className="text-lg text-muted-foreground" data-testid="text-before-after-subtitle">
-            완벽한 청소로 달라진 공간을 확인하세요
+          <div className="w-px h-12 bg-white/50 mx-auto mb-6"></div>
+          <p className="text-xl md:text-2xl font-medium text-white/90 mb-2" data-testid="text-before-after-title">
+            {slides[currentSlide].title}
+          </p>
+          <p className="text-lg text-white/80" data-testid="text-before-after-subtitle">
+            {slides[currentSlide].subtitle}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {images.map((image, index) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="max-w-5xl mx-auto"
+        >
+          <div className="flex items-center justify-center gap-4 md:gap-8">
+            <button
+              onClick={prevSlide}
+              className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
+              data-testid="button-beforeafter-prev"
             >
-              <Card className="overflow-hidden hover-elevate transition-all duration-300" data-testid={`card-beforeafter-${image.id}`}>
-                <div className="aspect-video bg-gradient-to-br from-primary/10 via-primary/5 to-card flex items-center justify-center">
-                  <div className="text-center">
-                    <Sparkles className="w-12 h-12 text-primary/40 mx-auto mb-2" />
-                    <p className="text-sm text-muted-foreground">Before & After</p>
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            </button>
+
+            <div className="flex-1 flex flex-col md:flex-row items-center gap-4 md:gap-8">
+              <div className="relative flex-1 w-full">
+                <div className="absolute top-4 left-4 z-10 px-4 py-2 bg-white/90 rounded-full">
+                  <span className="text-sm font-semibold text-gray-800">BEFORE</span>
+                </div>
+                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-gray-200 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <Sparkles className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-500 font-medium">Before 이미지</p>
+                    <p className="text-sm text-gray-400 mt-2">사례 {currentSlide + 1}</p>
                   </div>
                 </div>
-                <CardContent className="p-4">
-                  <p className="text-sm font-medium text-center" data-testid={`text-beforeafter-title-${image.id}`}>{image.title}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+              </div>
+
+              <div className="hidden md:flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
+                  <ChevronRight className="w-6 h-6 text-blue-600" />
+                </div>
+              </div>
+
+              <div className="relative flex-1 w-full">
+                <div className="absolute top-4 right-4 z-10 px-4 py-2 bg-white/90 rounded-full">
+                  <span className="text-sm font-semibold text-gray-800">AFTER</span>
+                </div>
+                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-gray-200 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <Sparkles className="w-16 h-16 text-primary mx-auto mb-4" />
+                    <p className="text-primary font-medium">After 이미지</p>
+                    <p className="text-sm text-gray-400 mt-2">사례 {currentSlide + 1}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              onClick={nextSlide}
+              className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
+              data-testid="button-beforeafter-next"
+            >
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            </button>
+          </div>
+
+          <div className="flex justify-center gap-2 mt-8">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  index === currentSlide ? "bg-white w-6" : "bg-white/40"
+                }`}
+                data-testid={`dot-beforeafter-${index}`}
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
