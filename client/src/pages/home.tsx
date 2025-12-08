@@ -560,7 +560,7 @@ function BeforeAfterSection() {
       id="before-after" 
       ref={ref} 
       className="py-20 md:py-28" 
-      style={{ backgroundColor: '#2563EB' }}
+      style={{ backgroundColor: '#03C75A' }}
       data-testid="section-before-after"
     >
       <div className="container mx-auto px-4">
@@ -612,7 +612,7 @@ function BeforeAfterSection() {
 
               <div className="hidden md:flex items-center justify-center">
                 <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
-                  <ChevronRight className="w-6 h-6 text-blue-600" />
+                  <ChevronRight className="w-6 h-6 text-primary" />
                 </div>
               </div>
 
