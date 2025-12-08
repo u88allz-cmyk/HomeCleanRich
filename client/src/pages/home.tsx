@@ -53,8 +53,6 @@ import before9 from "@assets/before_9.webp";
 import after9 from "@assets/after_9.webp";
 import before10 from "@assets/before_10.webp";
 import after10 from "@assets/after_10.webp";
-import before11 from "@assets/before_11.webp";
-import after11 from "@assets/after_11.webp";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -535,8 +533,7 @@ function BeforeAfterSection() {
     { id: 7, before: before7, after: after7, beforeAlt: "현관 청소 전", afterAlt: "현관 청소 후" },
     { id: 8, before: before8, after: after8, beforeAlt: "거실 청소 전", afterAlt: "거실 청소 후" },
     { id: 9, before: before9, after: after9, beforeAlt: "벽면 타일 청소 전", afterAlt: "벽면 타일 청소 후" },
-    { id: 10, before: before10, after: after10, beforeAlt: "레인지후드 청소 전", afterAlt: "레인지후드 청소 후" },
-    { id: 11, before: before11, after: after11, beforeAlt: "주방 입주 청소 전", afterAlt: "주방 입주 청소 후" }
+    { id: 10, before: before10, after: after10, beforeAlt: "레인지후드 청소 전", afterAlt: "레인지후드 청소 후" }
   ];
 
   const nextSlide = () => {
