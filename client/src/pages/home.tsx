@@ -559,8 +559,7 @@ function BeforeAfterSection() {
     <section 
       id="before-after" 
       ref={ref} 
-      className="py-20 md:py-28" 
-      style={{ backgroundColor: '#03C75A' }}
+      className="py-20 md:py-28 bg-primary"
       data-testid="section-before-after"
     >
       <div className="container mx-auto px-4">
