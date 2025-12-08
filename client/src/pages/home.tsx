@@ -33,6 +33,26 @@ import reviewImg7 from "@assets/image_1764233705225.webp";
 import reviewImg8 from "@assets/image_1764233708892.webp";
 import reviewImg9 from "@assets/image_1764233712192.webp";
 import reviewImg10 from "@assets/image_1764233715342.webp";
+import before1 from "@assets/before_1.webp";
+import after1 from "@assets/after_1.webp";
+import before2 from "@assets/before_2.webp";
+import after2 from "@assets/after_2.webp";
+import before3 from "@assets/before_3.webp";
+import after3 from "@assets/after_3.webp";
+import before4 from "@assets/before_4.webp";
+import after4 from "@assets/after_4.webp";
+import before5 from "@assets/before_5.webp";
+import after5 from "@assets/after_5.webp";
+import before6 from "@assets/before_6.webp";
+import after6 from "@assets/after_6.webp";
+import before7 from "@assets/before_7.webp";
+import after7 from "@assets/after_7.webp";
+import before8 from "@assets/before_8.webp";
+import after8 from "@assets/after_8.webp";
+import before9 from "@assets/before_9.webp";
+import after9 from "@assets/after_9.webp";
+import before10 from "@assets/before_10.webp";
+import after10 from "@assets/after_10.webp";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -503,12 +523,16 @@ function BeforeAfterSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    { id: 1, beforeAlt: "작업 전 1", afterAlt: "작업 후 1" },
-    { id: 2, beforeAlt: "작업 전 2", afterAlt: "작업 후 2" },
-    { id: 3, beforeAlt: "작업 전 3", afterAlt: "작업 후 3" },
-    { id: 4, beforeAlt: "작업 전 4", afterAlt: "작업 후 4" },
-    { id: 5, beforeAlt: "작업 전 5", afterAlt: "작업 후 5" },
-    { id: 6, beforeAlt: "작업 전 6", afterAlt: "작업 후 6" }
+    { id: 1, before: before1, after: after1, beforeAlt: "싱크대 하부장 청소 전", afterAlt: "싱크대 하부장 청소 후" },
+    { id: 2, before: before2, after: after2, beforeAlt: "변기 곰팡이 제거 전", afterAlt: "변기 곰팡이 제거 후" },
+    { id: 3, before: before3, after: after3, beforeAlt: "욕실 청소 전", afterAlt: "욕실 청소 후" },
+    { id: 4, before: before4, after: after4, beforeAlt: "창틀 레일 청소 전", afterAlt: "창틀 레일 청소 후" },
+    { id: 5, before: before5, after: after5, beforeAlt: "욕조 청소 전", afterAlt: "욕조 청소 후" },
+    { id: 6, before: before6, after: after6, beforeAlt: "베란다 청소 전", afterAlt: "베란다 청소 후" },
+    { id: 7, before: before7, after: after7, beforeAlt: "현관 청소 전", afterAlt: "현관 청소 후" },
+    { id: 8, before: before8, after: after8, beforeAlt: "거실 청소 전", afterAlt: "거실 청소 후" },
+    { id: 9, before: before9, after: after9, beforeAlt: "벽면 타일 청소 전", afterAlt: "벽면 타일 청소 후" },
+    { id: 10, before: before10, after: after10, beforeAlt: "레인지후드 청소 전", afterAlt: "레인지후드 청소 후" }
   ];
 
   const nextSlide = () => {
@@ -518,6 +542,14 @@ function BeforeAfterSection() {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
+
+  useEffect(() => {
+    const autoplayInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+
+    return () => clearInterval(autoplayInterval);
+  }, [slides.length]);
 
   return (
     <section 
@@ -564,12 +596,12 @@ function BeforeAfterSection() {
                 <div className="absolute top-4 left-4 z-10 px-4 py-2 bg-white/90 rounded-full">
                   <span className="text-sm font-semibold text-gray-800">BEFORE</span>
                 </div>
-                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-gray-200 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <Sparkles className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-500 font-medium">Before 이미지</p>
-                    <p className="text-sm text-gray-400 mt-2">사례 {currentSlide + 1}</p>
-                  </div>
+                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-gray-200">
+                  <img 
+                    src={slides[currentSlide].before} 
+                    alt={slides[currentSlide].beforeAlt}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
@@ -583,12 +615,12 @@ function BeforeAfterSection() {
                 <div className="absolute top-4 right-4 z-10 px-4 py-2 bg-white/90 rounded-full">
                   <span className="text-sm font-semibold text-gray-800">AFTER</span>
                 </div>
-                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-gray-200 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <Sparkles className="w-16 h-16 text-primary mx-auto mb-4" />
-                    <p className="text-primary font-medium">After 이미지</p>
-                    <p className="text-sm text-gray-400 mt-2">사례 {currentSlide + 1}</p>
-                  </div>
+                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-gray-200">
+                  <img 
+                    src={slides[currentSlide].after} 
+                    alt={slides[currentSlide].afterAlt}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
