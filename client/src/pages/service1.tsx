@@ -11,6 +11,14 @@ export default function Service1() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    document.title = "입주청소 - 서울 경기 새집 입주 전 청소 전문 | 홈클린리치";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', '서울, 경기, 인천 입주청소 전문 홈클린리치. 새집증후군 제거, 먼지 제거, 이사 전 완벽한 청소 서비스. 전문 장비와 친환경 세제로 건강한 새 집을 만들어드립니다. 무료 상담 070-1361-1659');
+    }
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };

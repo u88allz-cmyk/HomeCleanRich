@@ -11,6 +11,14 @@ export default function Service2() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    document.title = "거주청소 - 정기 가정집 청소 서비스 | 홈클린리치";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', '서울, 경기, 인천 거주청소 전문 홈클린리치. 주방, 욕실, 거실 정기 청소 서비스. 친환경 세제로 가족 건강을 지키는 깨끗한 집을 만들어드립니다. 무료 상담 070-1361-1659');
+    }
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };

@@ -13,6 +13,14 @@ export default function Service4() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    document.title = "특수청소 - 곰팡이 화재 쓰레기집 전문 청소 | 홈클린리치";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', '서울, 경기, 인천 특수청소 전문 홈클린리치. 곰팡이 제거, 화재 후 청소, 쓰레기집 청소 등 특수 상황 전문 청소 서비스. 전문 기술과 장비로 안전하게 해결합니다. 무료 상담 070-1361-1659');
+    }
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };

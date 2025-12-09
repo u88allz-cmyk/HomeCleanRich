@@ -11,6 +11,14 @@ export default function Service3() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    document.title = "상가청소 - 매장 사무실 입주청소 전문 | 홈클린리치";
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', '서울, 경기, 인천 상가청소 전문 홈클린리치. 매장, 사무실, 상업공간 입주 및 정기 청소 서비스. 고객 만족도와 비즈니스 성공을 위한 깨끗한 환경을 만들어드립니다. 무료 상담 070-1361-1659');
+    }
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
