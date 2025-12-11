@@ -1,6 +1,6 @@
-const { SolapiMessageService } = require("solapi");
+import { SolapiMessageService } from "solapi";
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
