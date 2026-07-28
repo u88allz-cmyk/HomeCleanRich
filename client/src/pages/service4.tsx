@@ -130,14 +130,16 @@ export default function Service4() {
 
       <main className="pt-20">
         <section className="relative py-24 md:py-32 overflow-hidden">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1600&auto=format&fit=crop&q=80')"
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
-          </div>
+          <img
+            src="https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=1600&auto=format&fit=crop&q=80"
+            alt="특수청소 전문 서비스"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            loading="eager"
+            width="1600"
+            height="900"
+            decoding="sync"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
           
           <div className="container mx-auto px-4 relative z-10">
             <motion.div 
@@ -197,6 +199,9 @@ export default function Service4() {
                           src={benefit.image} 
                           alt={benefit.title}
                           className="w-full h-full object-cover"
+                          loading="lazy"
+                          width="800"
+                          height="600"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                       </motion.div>

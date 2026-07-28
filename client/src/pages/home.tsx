@@ -212,10 +212,15 @@ function HeroSection({ scrollToSection }: any) {
       className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden"
       data-testid="section-hero"
     >
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1920&q=80')` }}
-      ></div>
+      <img
+        src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1920&q=80"
+        alt="깨끗한 아파트 거실"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        loading="eager"
+        width="1920"
+        height="1080"
+        decoding="sync"
+      />
       <div className="absolute inset-0 bg-black/50"></div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -407,6 +412,9 @@ function AdvantagesSection() {
                       src={advantage.image} 
                       alt={advantage.title} 
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      width="80"
+                      height="80"
                     />
                   </div>
                   <h3 className="text-xl font-bold mb-2" data-testid={`text-advantage-title-${advantage.title}`}>{advantage.title}</h3>
@@ -489,6 +497,9 @@ function ServicesSection() {
                     src={service.image} 
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    loading="lazy"
+                    width="400"
+                    height="160"
                   />
                 </div>
                 <CardContent className="p-6 flex flex-col flex-1">
