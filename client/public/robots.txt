@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://xn--oy2bh979mw4be7k.store/sitemap.xml
+Sitemap: https://xn--oy2bh979mw4be7k.com/sitemap.xml
